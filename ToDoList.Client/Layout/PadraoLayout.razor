@@ -1,0 +1,33 @@
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+<div class="layout-container min-h-screen flex flex-col">
+    <header class="bg-red-500 text-white p-4 flex justify-between">
+        <div>
+            <h1 class="text-xl font-bold">
+                <a href="/" class="text-white">ToDoList</a>
+            </h1>
+        </div>
+
+        <div>
+            <ul class="flex justify-between">
+                <li class="mr-4 text-center"><a href="/sobre" class="text-white hover:underline font-bold">Sobre</a></li>
+                <li class="mr-4 text-center"><a href="/cadastro" class="text-white hover:underline font-bold">Cadastro</a></li>
+                <li class="mr-4 text-center"><a href="/login" class="text-white hover:underline font-bold">Login</a></li>
+                <li class="mr-4 text-center"><a href="/dashboard" class="text-white hover:underline font-bold">Dashboard</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="flex flex-col flex-grow p-4 text-center @(EhDashboard ? "" : "justify-center")">
+        @Body
+    </main>
+
+    <footer class="bg-red-500 text-white text-center p-4 font-bold">
+        <p>&copy; 2025 ToDoList</p>
+    </footer>
+</div>
+
+@code {
+    private bool EhDashboard => NavigationManager.Uri.Contains("/dashboard");
+}
