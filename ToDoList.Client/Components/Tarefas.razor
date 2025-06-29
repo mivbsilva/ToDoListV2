@@ -12,16 +12,21 @@ else
     <button @onclick="CriarNovaLista" class="bg-red-500 text-white px-4 py-2 rounded mb-4 font-bold w-50">Confirmar Nome</button>
 }
 
+@if (carregando)
+{
+    <p>Carregando...</p>
+}
+
 @foreach (var lista in listas)
 {
     <div class="mb-4 text-left">
         <h2 @onclick="() => SelecionarLista(lista)" class="text-xl font-semibold mb-2 cursor-pointer text-left">@lista.Nome</h2>
 
         <ul>
-            @foreach (var tarefa in lista.Tarefas.Select((t, i) => new { Texto = t, Index = i }))
+            @foreach (var tarefa in lista.Tarefas.Select((t, i) => new { Tarefa = t, Index = i }))
             {
                 <li class="flex justify-between items-center">
-                    @if (tarefa.Index == indexDaTarefaEmEdicao && lista == listaSelecionada)
+                    @if (tarefa.Tarefa.Id == tarefaEmEdicaoId && lista == listaSelecionada)
                     {
                         <div class="flex w-full items-center gap-2">
                             <input @bind="textoDaTarefaEditada" class="border p-2 mb-2 rounded w-100 mr-2" />
@@ -32,11 +37,14 @@ else
                     else
                     {
                         <div class="">
-                        <span>@tarefa.Texto</span>
+                            <span class="@(tarefa.Tarefa.Concluida ? "line-through text-gray-500" : "")">@tarefa.Tarefa.Texto</span>
                         </div>
                         <div class="">
-                        <button @onclick="() => EditarTarefa(lista, tarefa.Index)" class="bg-red-500 text-white px-4 rounded mb-4 font-bold w-28 mr-2 p-2">✏️ Editar</button>
-                        <button @onclick="() => ExcluirTarefa(lista, tarefa.Index)" class="bg-red-500 text-white px-4 rounded mb-4 font-bold w-28 mr-167 p-2">🗑️ Excluir</button>
+                            <button @onclick="() => ToggleConcluida(tarefa.Tarefa)" class="bg-blue-500 text-white px-4 rounded mb-4 font-bold w-28 mr-2 p-2">
+                                @(tarefa.Tarefa.Concluida ? "✓" : "○")
+                            </button>
+                            <button @onclick="() => EditarTarefa(lista, tarefa.Tarefa)" class="bg-red-500 text-white px-4 rounded mb-4 font-bold w-28 mr-2 p-2">✏️ Editar</button>
+                            <button @onclick="() => ExcluirTarefa(lista, tarefa.Tarefa)" class="bg-red-500 text-white px-4 rounded mb-4 font-bold w-28 mr-167 p-2">🗑️ Excluir</button>
                         </div>
                     }
                 </li>
@@ -45,7 +53,7 @@ else
 
         @if (lista == listaSelecionada)
         {
-            <input @bind="novaTarefa" placeholder="Digite uma nova tarefa" class="border p-2 rounded mb-2 w-100 mr-3" />
+            <input @bind="novaTarefa" placeholder="Digite uma nova tarefa" class="border p-2 rounded mb-2 w-100 mr-3" @onkeypress="@(async (e) => { if (e.Key == "Enter") await AdicionarTarefa(); })" />
             <button @onclick="AdicionarTarefa" class="bg-red-500 text-white px-4 py-2 rounded mb-4 font-bold w-60">Adicionar</button>
         }
     </div>
