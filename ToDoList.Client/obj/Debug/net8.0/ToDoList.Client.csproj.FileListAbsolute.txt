@@ -1,10 +1,3 @@
-C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.csproj.AssemblyReference.cache
-C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.AssemblyInfoInputs.cache
-C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.AssemblyInfo.cs
-C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.csproj.CoreCompileInputs.cache
-C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.sourcelink.json
 C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\bin\Debug\net8.0\wwwroot\_framework\blazor.boot.json
 C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\bin\Debug\net8.0\wwwroot\_framework\blazor.webassembly.js
 C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\bin\Debug\net8.0\wwwroot\_framework\dotnet.js
@@ -616,6 +609,13 @@ C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\bin\Debug\net8.0\dotn
 C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\bin\Debug\net8.0\icudt_CJK.dat
 C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\bin\Debug\net8.0\icudt_EFIGS.dat
 C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\bin\Debug\net8.0\icudt_no_CJK.dat
+C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.csproj.AssemblyReference.cache
+C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.AssemblyInfoInputs.cache
+C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.AssemblyInfo.cs
+C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.csproj.CoreCompileInputs.cache
+C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\ToDoList.Client.sourcelink.json
 C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\webcil\Microsoft.AspNetCore.Authorization.wasm
 C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\webcil\Microsoft.AspNetCore.Components.wasm
 C:\Users\Milena Ventura\Documents\ToDoList\ToDoList.Client\obj\Debug\net8.0\webcil\Microsoft.AspNetCore.Components.Forms.wasm
