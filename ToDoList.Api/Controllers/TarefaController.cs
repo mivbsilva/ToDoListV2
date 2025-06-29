@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ToDoList.Api.Data;
 using ToDoList.Api.Models;
+using ToDoList.Api.DTOs;
 
 namespace ToDoList.Api.Controllers
 {
@@ -30,7 +31,17 @@ namespace ToDoList.Api.Controllers
             _context.Tarefas.Add(tarefa);
             await _context.SaveChangesAsync();
 
-            return Ok(tarefa);
+            // Retornar DTO
+            var tarefaDTO = new TarefaDTO
+            {
+                Id = tarefa.Id,
+                Texto = tarefa.Texto,
+                Concluida = tarefa.Concluida,
+                DataCriacao = tarefa.DataCriacao,
+                ListaId = tarefa.ListaId
+            };
+
+            return Ok(tarefaDTO);
         }
 
         [HttpPut("{id}")]
@@ -44,7 +55,18 @@ namespace ToDoList.Api.Controllers
             tarefa.Concluida = request.Concluida;
 
             await _context.SaveChangesAsync();
-            return Ok(tarefa);
+            
+            // Retornar DTO
+            var tarefaDTO = new TarefaDTO
+            {
+                Id = tarefa.Id,
+                Texto = tarefa.Texto,
+                Concluida = tarefa.Concluida,
+                DataCriacao = tarefa.DataCriacao,
+                ListaId = tarefa.ListaId
+            };
+            
+            return Ok(tarefaDTO);
         }
 
         [HttpDelete("{id}")]

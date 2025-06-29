@@ -13,4 +13,10 @@ builder.Services.AddScoped<ListaService>();
 builder.Services.AddScoped<TarefaService>();
 builder.Services.AddSingleton<AuthStateService>();
 
-await builder.Build().RunAsync();
+var app = builder.Build();
+
+// Inicializar o AuthStateService
+var authService = app.Services.GetRequiredService<AuthStateService>();
+await authService.InitializeAsync();
+
+await app.RunAsync();

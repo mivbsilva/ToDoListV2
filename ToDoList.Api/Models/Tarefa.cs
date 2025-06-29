@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ToDoList.Api.Models
 {
@@ -14,6 +15,8 @@ namespace ToDoList.Api.Models
         public DateTime DataCriacao { get; set; } = DateTime.Now;
         
         public int ListaId { get; set; }
+        
+        [JsonIgnore]
         public ListaDeTarefas Lista { get; set; } = null!;
     }
 }

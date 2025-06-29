@@ -19,7 +19,8 @@ namespace ToDoList.Client.Services
         {
             try
             {
-                var response = await _httpClient.GetFromJsonAsync<List<ListaDeTarefas>>($"{_baseUrl}/Lista/usuario/{usuarioId}");
+                var url = $"{_baseUrl}/Lista/usuario/{usuarioId}";
+                var response = await _httpClient.GetFromJsonAsync<List<ListaDeTarefas>>(url);
                 return response ?? new List<ListaDeTarefas>();
             }
             catch (Exception ex)

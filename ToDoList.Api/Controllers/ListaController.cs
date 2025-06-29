@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ToDoList.Api.Data;
 using ToDoList.Api.Models;
+using ToDoList.Api.DTOs;
 
 namespace ToDoList.Api.Controllers
 {
@@ -19,12 +20,34 @@ namespace ToDoList.Api.Controllers
         [HttpGet("usuario/{usuarioId}")]
         public async Task<IActionResult> GetListasUsuario(int usuarioId)
         {
-            var listas = await _context.Listas
-                .Where(l => l.UsuarioId == usuarioId)
-                .Include(l => l.Tarefas)
-                .ToListAsync();
+            try
+            {
+                var listas = await _context.Listas
+                    .Where(l => l.UsuarioId == usuarioId)
+                    .Include(l => l.Tarefas)
+                    .ToListAsync();
 
-            return Ok(listas);
+                var listasDTO = listas.Select(l => new ListaDTO
+                {
+                    Id = l.Id,
+                    Nome = l.Nome,
+                    UsuarioId = l.UsuarioId,
+                    Tarefas = l.Tarefas.Select(t => new TarefaDTO
+                    {
+                        Id = t.Id,
+                        Texto = t.Texto,
+                        Concluida = t.Concluida,
+                        DataCriacao = t.DataCriacao,
+                        ListaId = t.ListaId
+                    }).ToList()
+                }).ToList();
+                
+                return Ok(listasDTO);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno: {ex.Message}");
+            }
         }
 
         [HttpPost]

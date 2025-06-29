@@ -48,12 +48,6 @@ namespace ToDoList.Client.Components
             try
             {
                 listas = await ListaService.GetListasAsync(usuarioLogado.Id);
-                
-                // Carregar tarefas para cada lista
-                foreach (var lista in listas)
-                {
-                    lista.Tarefas = await TarefaService.GetTarefasAsync(lista.Id);
-                }
             }
             catch (Exception ex)
             {

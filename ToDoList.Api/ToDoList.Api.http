@@ -4,3 +4,9 @@ GET {{ToDoList.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+# Testar listas do usuário
+GET {{ToDoList.Api_HostAddress}}/api/Lista/usuario/4
+Accept: application/json
+
+###

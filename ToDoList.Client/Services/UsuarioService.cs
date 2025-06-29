@@ -36,14 +36,25 @@ namespace ToDoList.Client.Services
                 
                 if (response.IsSuccessStatusCode)
                 {
-                    return await response.Content.ReadFromJsonAsync<Usuario>();
+                    var usuario = await response.Content.ReadFromJsonAsync<Usuario>();
+                    if (usuario != null)
+                    {
+                        await _authState.LoginAsync(usuario);
+                    }
+                    return usuario;
                 }
                 return null;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Erro no login: {ex.Message}");
                 return null;
             }
+        }
+
+        public async Task SalvarUsuarioLogadoAsync(Usuario usuario)
+        {
+            await _authState.LoginAsync(usuario);
         }
 
         public void SalvarUsuarioLogado(Usuario usuario)
@@ -54,6 +65,11 @@ namespace ToDoList.Client.Services
         public Usuario? GetUsuarioLogado()
         {
             return _authState.UsuarioLogado;
+        }
+
+        public async Task LogoutAsync()
+        {
+            await _authState.LogoutAsync();
         }
 
         public void Logout()

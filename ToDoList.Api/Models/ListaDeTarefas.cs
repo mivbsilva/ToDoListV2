@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ToDoList.Api.Models
 {
@@ -11,6 +12,8 @@ namespace ToDoList.Api.Models
         public string Nome { get; set; } = string.Empty;
         
         public int UsuarioId { get; set; }
+        
+        [JsonIgnore]
         public Usuario Usuario { get; set; } = null!;
 
         public List<Tarefa> Tarefas { get; set; } = new();
