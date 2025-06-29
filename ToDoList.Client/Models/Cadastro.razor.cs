@@ -1,8 +1,8 @@
 using System;
 using Microsoft.AspNetCore.Components;
-using ToDoList.Models;
+using ToDoList.Client.Models;
 using System.Text.RegularExpressions;
-using ToDoList.Services;
+using ToDoList.Client.Services;
 
 
 namespace ToDoList.Client.Pages

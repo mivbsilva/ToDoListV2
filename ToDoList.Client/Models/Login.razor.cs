@@ -1,7 +1,5 @@
-using System;
 using Microsoft.AspNetCore.Components;
-using ToDoList.Models;
-using ToDoList.Services;
+using ToDoList.Client.Services;
 
 namespace ToDoList.Client.Pages
 {

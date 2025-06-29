@@ -26,16 +26,28 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Milena Ventura/Documents/ToDoList/ToDoList.Client/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+[C:/Users/Milena Ventura/Documents/ToDoList/ToDoList.Client/Components/Tarefas.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUYXJlZmFzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Milena Ventura/Documents/ToDoList/ToDoList.Client/Pages/Cadastro.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FkYXN0cm8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Milena Ventura/Documents/ToDoList/ToDoList.Client/Pages/Dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Milena Ventura/Documents/ToDoList/ToDoList.Client/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Milena Ventura/Documents/ToDoList/ToDoList.Client/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2VhdGhlci5yYXpvcg==
+[C:/Users/Milena Ventura/Documents/ToDoList/ToDoList.Client/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Milena Ventura/Documents/ToDoList/ToDoList.Client/Pages/Sobre.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU29icmUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Milena Ventura/Documents/ToDoList/ToDoList.Client/_Imports.razor]
