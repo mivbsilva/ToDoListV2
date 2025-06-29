@@ -1,0 +1,19 @@
+@page "/login"
+@using ToDoList.Models
+
+<PageTitle>Login</PageTitle>
+
+<h1 class="text-2xl font-bold mb-4">Login</h1>
+
+<p>Digite suas credenciais para acessar sua conta.</p>
+
+@if (!string.IsNullOrEmpty(msgErro))
+{
+    <div class="text-red-500 font-bold mt-2">@msgErro</div>
+}
+
+<div class="flex flex-col space-y-2 max-w-md mx-auto">
+    <input @bind="nomeUsuario" placeholder="Digite seu usuário" class="border p-2 rounded" />
+    <input type="password" @bind="senha" placeholder="Digite sua senha" class="border p-2 rounded" />
+    <button @onclick="FazerLogin" class="bg-red-500 text-white px-4 py-2 rounded">Entrar</button>
+</div>

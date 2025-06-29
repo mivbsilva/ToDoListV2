@@ -1,0 +1,25 @@
+@page "/cadastro"
+@using ToDoList.Client.Models
+
+<PageTitle>Cadastro</PageTitle>
+
+<h1 class="text-2xl font-bold mb-4">Cadastro</h1>
+
+<p>Comece a usar!</p>
+
+<div class="flex flex-col space-y-2 max-w-md mx-auto">
+    <input @bind="nome" placeholder="Nome completo" class="border p-2 rounded" />
+    <input @bind="nomeUsuario" placeholder="Usuário" class="border p-2 rounded" />
+    <input @bind="senha" placeholder="Senha" class="border p-2 rounded" type="password" />
+    <button @onclick="CriarNovoUsuario" class="bg-red-500 text-white px-4 py-2 rounded">Cadastrar</button>
+</div>
+
+@if (!string.IsNullOrEmpty(msgErro))
+{
+    <div class="text-red-500 font-bold mt-2">@msgErro</div>
+}
+
+@if (!string.IsNullOrEmpty(msgSucesso))
+{
+    <div class="text-green-500 font-bold mt-2">@msgSucesso</div>
+}

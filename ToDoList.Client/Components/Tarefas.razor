@@ -1,0 +1,52 @@
+@using ToDoList.Client.Models
+
+<h1 class="text-2xl font-bold mb-4 text-left">ToDoList de @nome</h1>
+
+@if (!criandoNovaLista)
+{
+    <button @onclick="() => criandoNovaLista = true" class="bg-red-500 text-white px-4 py-2 rounded mb-4 font-bold w-50">Criar Nova Lista</button>
+}
+else
+{
+    <input @bind="nomeNovaLista" placeholder="Digite o nome da nova lista" class="border p-2 rounded mb-2 w-100" />
+    <button @onclick="CriarNovaLista" class="bg-red-500 text-white px-4 py-2 rounded mb-4 font-bold w-50">Confirmar Nome</button>
+}
+
+@foreach (var lista in listas)
+{
+    <div class="mb-4 text-left">
+        <h2 @onclick="() => SelecionarLista(lista)" class="text-xl font-semibold mb-2 cursor-pointer text-left">@lista.Nome</h2>
+
+        <ul>
+            @foreach (var tarefa in lista.Tarefas.Select((t, i) => new { Texto = t, Index = i }))
+            {
+                <li class="flex justify-between items-center">
+                    @if (tarefa.Index == indexDaTarefaEmEdicao && lista == listaSelecionada)
+                    {
+                        <div class="flex w-full items-center gap-2">
+                            <input @bind="textoDaTarefaEditada" class="border p-2 mb-2 rounded w-100 mr-2" />
+                            <button @onclick="SalvarEdicao" class="bg-red-500 text-white px-4 py-2 rounded font-bold mb-4 w-28 mr-1">Salvar</button>
+                            <button @onclick="CancelarEdicao" class="bg-red-500 text-white px-4 py-2 rounded font-bold mb-4 w-28">Cancelar</button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="">
+                        <span>@tarefa.Texto</span>
+                        </div>
+                        <div class="">
+                        <button @onclick="() => EditarTarefa(lista, tarefa.Index)" class="bg-red-500 text-white px-4 rounded mb-4 font-bold w-28 mr-2 p-2">✏️ Editar</button>
+                        <button @onclick="() => ExcluirTarefa(lista, tarefa.Index)" class="bg-red-500 text-white px-4 rounded mb-4 font-bold w-28 mr-167 p-2">🗑️ Excluir</button>
+                        </div>
+                    }
+                </li>
+            }
+        </ul>
+
+        @if (lista == listaSelecionada)
+        {
+            <input @bind="novaTarefa" placeholder="Digite uma nova tarefa" class="border p-2 rounded mb-2 w-100 mr-3" />
+            <button @onclick="AdicionarTarefa" class="bg-red-500 text-white px-4 py-2 rounded mb-4 font-bold w-60">Adicionar</button>
+        }
+    </div>
+}
