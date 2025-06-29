@@ -1,8 +1,39 @@
 @page "/dashboard"
 @using ToDoList.Client.Components
+@using ToDoList.Client.Services
+@inject AuthStateService AuthState
+@inject NavigationManager Navigation
 
 <PageTitle>Dashboard</PageTitle>
 
-<h1 class="text-2xl font-bold mb-4 text-left">Dashboard</h1>
+@if (AuthState.IsLoggedIn)
+{
+    <h1 class="text-2xl font-bold mb-4 text-left">Dashboard</h1>
 
-<Tarefas />
+    <Tarefas />
+}
+else
+{
+    <div class="text-center mt-5">
+        <h2 class="text-xl text-red-500">Acesso negado</h2>
+        <p>Você precisa estar logado para acessar o Dashboard.</p>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded mt-3" @onclick="RedirecionarParaLogin">
+            Ir para Login
+        </button>
+    </div>
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        if (!AuthState.IsLoggedIn)
+        {
+            Navigation.NavigateTo("/login");
+        }
+    }
+
+    private void RedirecionarParaLogin()
+    {
+        Navigation.NavigateTo("/login");
+    }
+}

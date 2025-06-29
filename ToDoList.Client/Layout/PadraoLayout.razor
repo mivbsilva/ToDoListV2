@@ -1,5 +1,7 @@
 @inherits LayoutComponentBase
 @inject NavigationManager NavigationManager
+@inject AuthStateService AuthState
+@implements IDisposable
 
 <div class="layout-container min-h-screen flex flex-col">
     <header class="bg-red-500 text-white p-4 flex justify-between">
@@ -12,9 +14,22 @@
         <div>
             <ul class="flex justify-between">
                 <li class="mr-4 text-center"><a href="/sobre" class="text-white hover:underline font-bold">Sobre</a></li>
-                <li class="mr-4 text-center"><a href="/cadastro" class="text-white hover:underline font-bold">Cadastro</a></li>
-                <li class="mr-4 text-center"><a href="/login" class="text-white hover:underline font-bold">Login</a></li>
-                <li class="mr-4 text-center"><a href="/dashboard" class="text-white hover:underline font-bold">Dashboard</a></li>
+                
+                @if (AuthState?.IsLoggedIn != true)
+                {
+                    <li class="mr-4 text-center"><a href="/cadastro" class="text-white hover:underline font-bold">Cadastro</a></li>
+                    <li class="mr-4 text-center"><a href="/login" class="text-white hover:underline font-bold">Login</a></li>
+                }
+                
+                @if (AuthState?.IsLoggedIn == true)
+                {
+                    <li class="mr-4 text-center"><a href="/dashboard" class="text-white hover:underline font-bold">Dashboard</a></li>
+                    <li class="mr-4 text-center">
+                        <button @onclick="Logout" class="text-white hover:underline font-bold bg-transparent border-0 cursor-pointer">
+                            Logout
+                        </button>
+                    </li>
+                }
             </ul>
         </div>
     </header>
@@ -30,4 +45,26 @@
 
 @code {
     private bool EhDashboard => NavigationManager.Uri.Contains("/dashboard");
+    
+    protected override void OnInitialized()
+    {
+        if (AuthState != null)
+        {
+            AuthState.OnAuthStateChanged += StateHasChanged;
+        }
+    }
+
+    private void Logout()
+    {
+        AuthState?.Logout();
+        NavigationManager.NavigateTo("/login");
+    }
+
+    public void Dispose()
+    {
+        if (AuthState != null)
+        {
+            AuthState.OnAuthStateChanged -= StateHasChanged;
+        }
+    }
 }

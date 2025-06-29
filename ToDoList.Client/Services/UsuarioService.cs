@@ -6,11 +6,12 @@ namespace ToDoList.Client.Services
     public class UsuarioService
     {
         private readonly HttpClient _httpClient;
-        private static Usuario? usuarioLogado;
+        private readonly AuthStateService _authState;
 
-        public UsuarioService(HttpClient httpClient)
+        public UsuarioService(HttpClient httpClient, AuthStateService authState)
         {
             _httpClient = httpClient;
+            _authState = authState;
         }
 
         public async Task<bool> AdicionarUsuarioAsync(Usuario usuario)
@@ -47,12 +48,17 @@ namespace ToDoList.Client.Services
 
         public void SalvarUsuarioLogado(Usuario usuario)
         {
-            usuarioLogado = usuario;
+            _authState.Login(usuario);
         }
 
         public Usuario? GetUsuarioLogado()
         {
-            return usuarioLogado;
+            return _authState.UsuarioLogado;
+        }
+
+        public void Logout()
+        {
+            _authState.Logout();
         }
     }
 }
