@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "ToDoList.Api"
+		},
+		{
+			"path": "ToDoList.Client"
+		}
+	]
+}

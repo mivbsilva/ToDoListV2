@@ -4,7 +4,6 @@ using ToDoList.Client.Models;
 using System.Text.RegularExpressions;
 using ToDoList.Client.Services;
 
-//comentário para testar o commit
 namespace ToDoList.Client.Pages
 {
     public partial class Cadastro : ComponentBase
@@ -34,10 +33,6 @@ namespace ToDoList.Client.Pages
             {
                 msgErro = "O nome de usuário deve ter entre 7 e 15 caracteres.";
             }
-            else if (usuarios.Any(u => u.NomeUsuario == nomeUsuario))
-            {
-                msgErro = "O nome de usuário já existe.";
-            }
             else if (!SenhaValida(senha))
             {
                 msgErro = "A senha deve conter letras, pelo menos um número e pelo menos um caractere especial.";
@@ -49,16 +44,22 @@ namespace ToDoList.Client.Pages
             }
 
             var novoUsuario = new Usuario { Nome = nome, NomeUsuario = nomeUsuario, Senha = senha };
-            UsuarioService.AdicionarUsuario(novoUsuario);
+            var sucesso = await UsuarioService.AdicionarUsuarioAsync(novoUsuario);
 
-            msgSucesso = "Usuário criado com sucesso! Você será redirecionado para o login!";
+            if (sucesso)
+            {
+                msgSucesso = "Usuário criado com sucesso! Você será redirecionado para o login!";
+                await Task.Delay(3000);
+                NavigationManager.NavigateTo("/login");
 
-            await Task.Delay(3000);
-            NavigationManager.NavigateTo("/login");
-
-            nome = string.Empty;
-            nomeUsuario = string.Empty;
-            senha = string.Empty;
+                nome = string.Empty;
+                nomeUsuario = string.Empty;
+                senha = string.Empty;
+            }
+            else
+            {
+                msgErro = "Erro ao criar usuário. Tente novamente.";
+            }
         }
 
         private bool SenhaValida(string senha)

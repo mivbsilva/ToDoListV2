@@ -1,32 +1,58 @@
+using System.Net.Http.Json;
 using ToDoList.Client.Models;
 
 namespace ToDoList.Client.Services
 {
     public class UsuarioService
     {
-        private List<Usuario> usuarios = new();
-        private static Usuario usuarioLogado;
+        private readonly HttpClient _httpClient;
+        private static Usuario? usuarioLogado;
 
-        public void AdicionarUsuario(Usuario usuario)
+        public UsuarioService(HttpClient httpClient)
         {
-            usuarios.Add(usuario);
+            _httpClient = httpClient;
         }
 
-        public Usuario ValidarLogin(string nomeUsuario, string senha)
+        public async Task<bool> AdicionarUsuarioAsync(Usuario usuario)
         {
-            return usuarios.FirstOrDefault(u => u.NomeUsuario == nomeUsuario && u.Senha == senha);
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("api/usuario/cadastrar", usuario);
+                return response.IsSuccessStatusCode;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public Usuario SalvarUsuarioLogado(string nome)
+        public async Task<Usuario?> ValidarLoginAsync(string nomeUsuario, string senha)
         {
-            usuarioLogado = usuarios.FirstOrDefault(u => u.Nome == nome);
-            return usuarioLogado;
+            try
+            {
+                var loginRequest = new { NomeUsuario = nomeUsuario, Senha = senha };
+                var response = await _httpClient.PostAsJsonAsync("api/usuario/login", loginRequest);
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<Usuario>();
+                }
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
-        public Usuario GetUsuarioLogado()
+        public void SalvarUsuarioLogado(Usuario usuario)
+        {
+            usuarioLogado = usuario;
+        }
+
+        public Usuario? GetUsuarioLogado()
         {
             return usuarioLogado;
         }
     }
 }
-

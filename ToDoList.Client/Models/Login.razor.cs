@@ -15,16 +15,15 @@ namespace ToDoList.Client.Pages
         private string senha;
         private string msgErro;
 
-        private void FazerLogin()
+        private async Task FazerLogin()
         {
             msgErro = string.Empty;
 
-            var usuario = UsuarioService.ValidarLogin(nomeUsuario, senha);
+            var usuario = await UsuarioService.ValidarLoginAsync(nomeUsuario, senha);
 
             if (usuario != null)
             {
-                UsuarioService.SalvarUsuarioLogado(usuario.Nome);
-
+                UsuarioService.SalvarUsuarioLogado(usuario);
                 NavigationManager.NavigateTo("/dashboard");
             }
             else

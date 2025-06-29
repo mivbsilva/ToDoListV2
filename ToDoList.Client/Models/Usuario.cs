@@ -5,8 +5,9 @@ namespace ToDoList.Client.Models
 {
     public class Usuario
     {
-        public string Nome { get; set; }
-        public string NomeUsuario { get; set; }
-        public string Senha { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; } = string.Empty;
+        public string NomeUsuario { get; set; } = string.Empty;
+        public string Senha { get; set; } = string.Empty;
     }
 }
