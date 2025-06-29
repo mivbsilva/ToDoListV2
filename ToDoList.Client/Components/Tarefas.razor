@@ -40,9 +40,7 @@ else
                             <span class="@(tarefa.Tarefa.Concluida ? "line-through text-gray-500" : "")">@tarefa.Tarefa.Texto</span>
                         </div>
                         <div class="">
-                            <button @onclick="() => ToggleConcluida(tarefa.Tarefa)" class="bg-blue-500 text-white px-4 rounded mb-4 font-bold w-28 mr-2 p-2">
-                                @(tarefa.Tarefa.Concluida ? "✓" : "○")
-                            </button>
+                            <button @onclick="() => ToggleConcluida(tarefa.Tarefa)" class="@(tarefa.Tarefa.Concluida ? "bg-white-500" : "bg-white-500") text-white px-4 rounded mb-4 font-bold w-28 mr-2 p-2">@(tarefa.Tarefa.Concluida ? "✅" : "⭕")</button>
                             <button @onclick="() => EditarTarefa(lista, tarefa.Tarefa)" class="bg-red-500 text-white px-4 rounded mb-4 font-bold w-28 mr-2 p-2">✏️ Editar</button>
                             <button @onclick="() => ExcluirTarefa(lista, tarefa.Tarefa)" class="bg-red-500 text-white px-4 rounded mb-4 font-bold w-28 mr-167 p-2">🗑️ Excluir</button>
                         </div>
