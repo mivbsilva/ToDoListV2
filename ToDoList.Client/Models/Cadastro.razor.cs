@@ -4,7 +4,7 @@ using ToDoList.Client.Models;
 using System.Text.RegularExpressions;
 using ToDoList.Client.Services;
 
-
+//comentário para testar o commit
 namespace ToDoList.Client.Pages
 {
     public partial class Cadastro : ComponentBase
